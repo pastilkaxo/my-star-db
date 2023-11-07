@@ -1,0 +1,22 @@
+.header_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+    background-color: royalblue;
+    position: sticky;
+}
+.header_container ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.header_container ul li {
+    list-style-type: none;
+    margin-right: 50px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+}

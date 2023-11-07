@@ -1,0 +1,46 @@
+.person-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+
+.person {
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    width: 650px;
+    gap: 30px;
+    padding: 10px;
+    border: 1px solid royalblue;
+}
+
+.person img {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.person-info hr {
+    width: 350px;
+}
+.person-info {
+    font-weight: 700;
+}
+
+.person-info h2{
+    padding: 10px;
+}
+.person-info p{
+    padding: 10px;
+}
+.person-info h2:hover {
+    background-color: black;
+    color: white;
+}
+.person-info p:hover {
+    background-color: black;
+    color: white;
+}

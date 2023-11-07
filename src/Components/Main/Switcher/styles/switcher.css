@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+
+.switcher-container {
+    border-radius: 20px;
+    border: 1px solid royalblue;
+    display: flex;
+    width: 850px;
+    background-color: white;
+    justify-content: center;
+    color: black;
+    gap: 50px;
+    align-items: center;
+}
+.switcher-container img {
+    height: 200px;
+
+}
