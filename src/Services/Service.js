@@ -11,19 +11,20 @@ export default class SwapiService {
         return await res.json();
     }
 
-    getAllPerson = (id) => {
-        return this.getRequest(`/people/${id}/`)
+    async getPerson  (id)  {
+        const person = await this.getRequest(`/people/${id}/`)
+        return this._transformPerson(person)
     }
 
     async getAllPeopple(){
         const res = await this.getRequest(`/people/`);
-        return res.results
+        return res.results.map(this._transformPerson)
 
     }
 
     async getAllPlanets(){
         const res = await this.getRequest(`/planets/`);
-        return res.results
+        return res.results.map(this._transformPlanet)
 
     }
 
@@ -34,26 +35,61 @@ export default class SwapiService {
 
     async getAllShips(){
         const res = await this.getRequest(`/starships/`);
-        return res.results
+        return res.results.map(this._transformShip);
     }
 
-    getShip = (id) => {
-        return this.getRequest(`/starships/${id}/`)
+    async getShip (id)  {
+        const ship = await this.getRequest(`/starships/${id}/`);
+        return this._transformShip(ship)
     }
 
-    _transformPlanet(){
-        const [planetId ,setPlanetId] =useState(null);
-        const [planetName, setPlanetName] = useState(null);
-        const [planetImg , setPlanetImg] = useState(null);
-        const [population , setPopulation] =useState(null);
-        const  [diameter,setDiameter] = useState(null);
-        const [rotationPeriod, setRotationPeriod] = useState(null);
+
+_extractId(item){
+    const idRegExp = /\/([0-9]*)\/$/;
+      return item.url.match(idRegExp)[1];
+}
+    _transformShip(ship){
         return(
-        setPlanetId(id),
-        setPlanetName(planet.name),
-        setDiameter(planet.diameter),
-        setPopulation(planet.population),
-        setRotationPeriod(planet.rotation_period)
+            {
+                id: this._extractId(ship),
+                name:ship.name,
+                model: ship.model,
+                manufacturer: ship.manufacturer,
+                costInCredits: ship.costInCredits,
+                length: ship.length,
+                crew: ship.crew,
+                passengers: ship.passengers,
+                capacity: ship.capacity
+
+            }
+
+        )
+    }
+
+    _transformPerson(person){
+        return(
+            {
+                id: this._extractId(person),
+                name:person.name,
+                gender:person.gender,
+                birthYear: person.birthYear,
+                eyeColor: person.eyeColor
+            }
+
+        )
+    }
+
+
+    _transformPlanet(planet){
+        return(
+            {
+                id: this._extractId(planet),
+                planetName:planet.name,
+                population:planet.population,
+                rotationPeriod:planet.rotation_period,
+                diameter:planet.diameter
+            }
+
         )
     }
 
